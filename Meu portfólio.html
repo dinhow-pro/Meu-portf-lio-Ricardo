@@ -1,0 +1,606 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfólio | Ricardo</title>
+  <style>
+    :root{
+      --bg:#0b0b0f;
+      --card:#12121a;
+      --orange:#ff7a18;
+      --orange2:#ff9a3d;
+      --text:#f3f3f3;
+      --muted:#b8b8c7;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,122,24,.18), transparent 55%),
+                  radial-gradient(900px 500px at 90% 30%, rgba(255,154,61,.10), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 22px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .wrap{
+      width: min(980px, 100%);
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom: 18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      user-select:none;
+    }
+
+    .dot{
+      width:12px;height:12px;border-radius:50%;
+      background: linear-gradient(135deg, var(--orange), var(--orange2));
+      box-shadow: 0 0 18px rgba(255,122,24,.55);
+    }
+
+    .brand span{
+      font-weight: 700;
+      letter-spacing: .6px;
+    }
+
+    .pill{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 8px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero{
+      background: linear-gradient(180deg, rgba(255,122,24,.08), rgba(255,122,24,0) 65%),
+                  rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:-120px -140px auto auto;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,122,24,.35), transparent 62%);
+      filter: blur(6px);
+      transform: rotate(18deg);
+      pointer-events:none;
+    }
+
+    h1{
+      margin:0 0 8px;
+      font-size: clamp(28px, 5vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -.6px;
+    }
+
+    .typing{
+      display:inline-block;
+      border-right: 2px solid rgba(255,122,24,.9);
+      padding-right: 6px;
+      animation: caret .85s step-end infinite;
+    }
+
+    @keyframes caret{
+      50%{ border-right-color: transparent; }
+    }
+
+    .sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 60ch;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 14px 0 4px;
+    }
+
+    .chip{
+      border: 1px solid rgba(255,122,24,.22);
+      background: rgba(255,122,24,.08);
+      color: #ffd7b6;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 16px;
+    }
+
+    button{
+      border: 0;
+      cursor: pointer;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      transition: transform .12s ease, box-shadow .12s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--orange), var(--orange2));
+      color: #1a0f05;
+      box-shadow: 0 14px 35px rgba(255,122,24,.22);
+    }
+    .btn-primary:hover{ transform: translateY(-1px); }
+    .btn-primary:active{ transform: translateY(1px) scale(.99); }
+
+    .btn-ghost{
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.10);
+      color: var(--text);
+    }
+    .btn-ghost:hover{
+      border-color: rgba(255,122,24,.35);
+      box-shadow: 0 14px 35px rgba(255,122,24,.10);
+      transform: translateY(-1px);
+    }
+    .btn-ghost:active{ transform: translateY(1px) scale(.99); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    @media (min-width: 840px){
+      .grid{ grid-template-columns: 1.15fr .85fr; }
+    }
+
+    .card{
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .card-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: linear-gradient(180deg, rgba(255,122,24,.08), rgba(255,122,24,0));
+    }
+
+    .card-header h2{
+      margin:0;
+      font-size: 14px;
+      color: #ffd7b6;
+      letter-spacing:.6px;
+      text-transform: uppercase;
+    }
+
+    .badge{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.12);
+    }
+
+    .card-body{
+      padding: 14px 16px 16px;
+    }
+
+    .accordion{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+
+    .acc-item{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.12);
+      overflow:hidden;
+    }
+
+    .acc-btn{
+      width:100%;
+      text-align:left;
+      background: transparent;
+      color: var(--text);
+      padding: 14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-weight: 800;
+    }
+
+    .acc-btn .left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .icon{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      background: rgba(255,122,24,.12);
+      border: 1px solid rgba(255,122,24,.25);
+      color: #ffd7b6;
+      font-size: 16px;
+      flex: 0 0 auto;
+    }
+
+    .chev{
+      opacity:.9;
+      transition: transform .2s ease;
+      color: #ffd7b6;
+    }
+
+    .acc-content{
+      max-height: 0;
+      overflow:hidden;
+      transition: max-height .25s ease;
+      padding: 0 14px;
+    }
+
+    .acc-content p{
+      color: var(--muted);
+      margin: 0 0 12px;
+      line-height: 1.45;
+    }
+
+    .acc-content .mini{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .mini a{
+      text-decoration:none;
+      color: #ffd7b6;
+      border: 1px solid rgba(255,122,24,.22);
+      background: rgba(255,122,24,.08);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .open .acc-content{
+      max-height: 280px;
+      padding-top: 2px;
+    }
+    .open .chev{ transform: rotate(180deg); }
+
+    .project{
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.12);
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .project h3{
+      margin:0;
+      font-size: 15px;
+      color: #ffd7b6;
+    }
+    .project p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.45;
+      font-size: 13px;
+    }
+
+    .row{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+    }
+
+    .link{
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-weight: 700;
+    }
+    .link:active{ transform: translateY(1px); }
+    .link:hover{
+      border-color: rgba(255,122,24,.35);
+      box-shadow: 0 14px 35px rgba(255,122,24,.10);
+    }
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events:none;
+      background: rgba(0,0,0,.75);
+      border: 1px solid rgba(255,255,255,.10);
+      color: #ffd7b6;
+      padding: 10px 12px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      transition: opacity .2s ease, transform .2s ease;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .toast.show{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="dot"></div>
+        <span>PORTFÓLIO</span>
+      </div>
+      <div class="pill" id="statusPill">status: estudando</div>
+    </div>
+
+    <section class="hero">
+      <h1>
+        <span id="typed" class="typing"></span>
+      </h1>
+      <p class="sub">
+        Estudante de <b>Análise e Desenvolvimento de Sistemas</b>. Construindo minha base em
+        <b>HTML</b>, <b>CSS</b> e <b>JavaScript</b> com projetos práticos e constância.
+      </p>
+
+      <div class="chips">
+        <span class="chip">HTML</span>
+        <span class="chip">CSS</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">ADS</span>
+      </div>
+
+      <div class="actions">
+        <button class="btn-primary" id="btnSurprise">Clique aqui 👀</button>
+        <button class="btn-ghost" id="btnToggleStatus">Alternar status</button>
+        <button class="btn-ghost" id="btnOpenProjects">Ver projetos</button>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <div class="card-header">
+          <h2>Seções</h2>
+          <span class="badge">interativo</span>
+        </div>
+        <div class="card-body">
+          <div class="accordion" id="accordion">
+            <div class="acc-item open">
+              <button class="acc-btn" type="button">
+                <span class="left"><span class="icon">👤</span> Sobre mim</span>
+                <span class="chev">▾</span>
+              </button>
+              <div class="acc-content">
+                <p>
+                  Sou o <b>Ricardo</b> e estou começando no desenvolvimento web. Gosto de aprender na prática,
+                  criar projetos e evoluir um pouco todos os dias.
+                </p>
+                <div class="mini">
+                  <a href="#" id="dinhobc6@gmail.com">Copiar e-mail</a>
+                </div>
+            </div>
+
+            <div class="acc-item">
+              <button class="acc-btn" type="button">
+                <span class="left"><span class="icon">🧩</span> Projetos</span>
+                <span class="chev">▾</span>
+              </button>
+              <div class="acc-content">
+                <div class="project">
+                  <h3>Revista Digitada</h3>
+                  <p>Uma revista animada com estilo folhear em cada página</p>
+                </div>
+                <div class="project">
+                  <h3>Aplicativo Bizurado (MVP em evolução)
+                  <p>Um aplicativo capaz de ajudar na formação dos Recrutas
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <button class="acc-btn" type="button">
+                <span class="left"><span class="icon">📩</span> Contato</span>
+                <span class="chev">▾</span>
+              </button>
+              <div class="acc-content">
+                <p>Me chama por aqui:</p>
+                <div class="row">
+                  <a class="link" href="https://www.linkedin.com/in/ricardo-castro-105480308?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="https://www.linkedin.com/in/ricardo-castro-105480308?utm_source=share_via&utm_content=profile&utm_medium=member_android">💼 LinkedIn</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card">
+        <div class="card-header">
+          <h2>Painel</h2>
+          <span class="badge" id="xpBadge">XP: 100k+</span>
+        </div>
+        <div class="card-body">
+          <div class="project">
+            <h3>Hoje</h3>
+            <p id="todayText">Clique no botão "Clique aqui 👀" para ver uma mensagem.</p>
+          </div>
+
+          <div class="project">
+            <h3>Minha meta</h3>
+            <p>Publicar 5 projetos no GitHub e conquistar a primeira oportunidade na área.</p>
+          </div>
+
+          <div class="row">
+            <a class="link" href="#" id="btnScrollTop">⬆️ Topo</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="toast" id="toast">Copiado ✅</div>
+  </div>
+
+  <script>
+    // ====== EFEITO DE DIGITAÇÃO (H1 aparecendo) ======
+    const typedEl = document.getElementById("typed");
+    const titleText = "Ricardo -- Dev em formação";
+    let i = 0;
+
+    function typeLoop(){
+      typedEl.textContent = titleText.slice(0, i);
+      i++;
+      if(i <= titleText.length){
+        setTimeout(typeLoop, 70);
+      }
+    }
+    typeLoop();
+
+    // ====== ACCORDION ======
+    const accItems = document.querySelectorAll(".acc-item");
+    accItems.forEach(item => {
+      const btn = item.querySelector(".acc-btn");
+      btn.addEventListener("click", () => {
+        // fecha os outros (opcional, fica mais clean)
+        accItems.forEach(other => {
+          if(other !== item) other.classList.remove("open");
+        });
+        item.classList.toggle("open");
+      });
+    });
+
+    // ====== TOAST ======
+    const toast = document.getElementById("toast");
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1400);
+    }
+
+    // ====== BOTÕES ======
+    const todayText = document.getElementById("todayText");
+    document.getElementById("btnSurprise").addEventListener("click", () => {
+      const msgs = [
+        "🌙 Modo foco ativado: aprender 1% hoje.",
+        "🔥 Constância > motivação. Vamos!",
+        "💻 Pequenos commits, grandes resultados.",
+        "🚀 Projeto novo em breve no GitHub!"
+      ];
+      const pick = msgs[Math.floor(Math.random() * msgs.length)];
+      todayText.textContent = pick;
+      showToast("Atualizado ✅");
+    });
+
+    const statusPill = document.getElementById("statusPill");
+    let studying = true;
+    document.getElementById("btnToggleStatus").addEventListener("click", () => {
+      studying = !studying;
+      statusPill.textContent = studying ? "status: estudando" : "status: construindo projetos";
+      showToast("Status alterado ✅");
+    });
+
+    document.getElementById("btnOpenProjects").addEventListener("click", () => {
+      // abre a aba de projetos
+      accItems.forEach(item => item.classList.remove("open"));
+      accItems[1].classList.add("open");
+      accItems[1].scrollIntoView({behavior:"smooth", block:"center"});
+      showToast("Projetos ✅");
+    });
+
+    // ====== COPIAR TEXTO ======
+    const email = "seuemail@exemplo.com"; // troque aqui
+    document.getElementById("copyEmail").addEventListener("click", async (e) => {
+      e.preventDefault();
+      try{
+        await navigator.clipboard.writeText(email);
+        showToast("E-mail copiado ✅");
+      }catch{
+        showToast("Não deu pra copiar 😅");
+      }
+    });
+
+    const headline = "ADS Student | Future Full Stack Developer | HTML | CSS | JavaScript";
+    document.getElementById("copyHeadline").addEventListener("click", async (e) => {
+      e.preventDefault();
+      try{
+        await navigator.clipboard.writeText(headline);
+        showToast("Headline copiada ✅");
+      }catch{
+        showToast("Não deu pra copiar 😅");
+      }
+    });
+
+    // ====== LINKS EXTRAS ======
+    document.getElementById("btnThemeHint").addEventListener("click", (e) => {
+      e.preventDefault();
+      showToast("Tema: dark + laranja 🟧");
+    });
+
+    document.getElementById("btnScrollTop").addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  </script>
+</body>
+</html><style>const email = "seuemail@exemplo.com"; // troque aqui
+    document.getElementById("copyEmail").addEventListener("click", async (e) => {
+      e.preventDefault();
+      try{
+        await navigator.clipboard.writeText(email);
+        showToast("E-mail copiado ✅");
+      }catch{
+        showToast("Não deu pra copiar 😅");
+      }
+    });
+</style>
